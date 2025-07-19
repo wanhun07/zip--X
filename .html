@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>zip X - It Flies</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fafafa;
+    }
+    header {
+      background: linear-gradient(90deg, #004e92, #000428);
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    header h1 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      font-size: 2.5rem;
+      margin: 0;
+    }
+    header h1 img {
+      height: 50px;
+      width: 50px;
+      object-fit: contain;
+    }
+    header p {
+      margin: 5px 0 15px;
+      font-style: italic;
+      font-weight: 600;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+    nav a:hover {
+      color: #00c3ff;
+    }
+    .section {
+      padding: 50px 20px;
+      text-align: center;
+      max-width: 1200px;
+      margin: auto;
+      display: none;
+    }
+    .active-section {
+      display: block;
+    }
+    .products, .cart-items {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 30px;
+    }
+    .product-card, .cart-item {
+      border: 1px solid #ccc;
+      padding: 20px;
+      width: 250px;
+      border-radius: 8px;
+      background: white;
+      box-shadow: 0 3px 6px rgb(0 0 0 / 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+    .product-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    button {
+      padding: 10px 15px;
+      background: #004e92;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+    button:hover {
+      background: #0077ff;
+    }
+    #cart {
+      background: #f0f0f0;
+    }
+    #checkout {
+      max-width: 300px;
+      margin: 30px auto 0;
+      background: white;
+      padding: 15px 20px;
+      border-radius: 8px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+    select, input, textarea {
+      width: 100%;
+      padding: 8px 10px;
+      font-size: 1rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    footer {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+      margin-top: 40px;
+      font-size: 0.9rem;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 10px;
+      font-size: 1.1rem;
+    }
+    ul li {
+      margin-bottom: 8px;
+    }
+    @media (max-width: 650px) {
+      .product-card, .cart-item {
+        width: 90%;
+      }
+      nav a {
+        display: inline-block;
+        margin: 10px 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>
+    <img src="download.png" alt="zip X logo" />
+    zip X
+  </h1>
+  <p>It Flies.</p>
+  <nav>
+    <a onclick="showSection('home')">Home</a>
+    <a onclick="showSection('products')">Products</a>
+    <a onclick="showSection('cart')">Cart</a>
+    <a onclick="showSection('about')">About Us</a>
+  </nav>
+</header>
+
+<section id="home" class="section active-section">
+  <h2>Welcome to zip X</h2>
+  <p>Some of our bike's special features include gear mechanisms, strong brakes, and anti-rust metal frames.</p>
+  <p>Discover our special edition bikes and ride like never before.</p>
+</section>
+
+<section id="products" class="section">
+  <h2>Our Bicycles</h2>
+  <div class="products">
+    <div class="product-card" onclick="showProductDetails('zip X Standard')">
+      <img src="cycle.jpg" alt="zip X Standard" />
+      <h3>zip X Standard</h3>
+      <p>₹9,999</p>
+      <button onclick="event.stopPropagation(); addToCart('zip X Standard')">Add to Cart</button>
+    </div>
+    <div class="product-card" onclick="showProductDetails('zip X Nash Special Edition')">
+      <img src="cycle1.jpg" alt="zip X Nash Special Edition" />
+      <h3>zip X Nash Special Edition</h3>
+      <p>₹14,999</p>
+      <button onclick="event.stopPropagation(); addToCart('zip X Nash Special Edition')">Add to Cart</button>
+    </div>
+    <div class="product-card" onclick="showProductDetails('zip X Daniel Special Edition')">
+      <img src="cycle2.jpg" alt="zip X Daniel Special Edition" />
+      <h3>zip X Daniel Special Edition</h3>
+      <p>₹12,499</p>
+      <button onclick="event.stopPropagation(); addToCart('zip X Daniel Special Edition')">Add to Cart</button>
+    </div>
+    <div class="product-card" onclick="showProductDetails('zip X Jotham special Edition')">
+      <img src="cycle3.jpg" alt="zip X Jotham special Edition" />
+      <h3>zip X Jotham special Edition</h3>
+      <p>₹13,499</p>
+      <button onclick="event.stopPropagation(); addToCart('zip X Jotham special Edition')">Add to Cart</button>
+    </div>
+    <div class="product-card" onclick="showProductDetails('zip X Jaden Special Edition')">
+      <img src="cycle4.jpg" alt="zip X Jaden Special Edition" />
+      <h3>zip X Jaden Special Edition</h3>
+      <p>₹13,999</p>
+      <button onclick="event.stopPropagation(); addToCart('zip X Jaden Special Edition')">Add to Cart</button>
+    </div>
+    <div class="product-card" onclick="showProductDetails('zip X Arban Special Edition')">
+      <img src="cycle5.jpg" alt="zip X Arban Special Edition" />
+      <h3>zip X Arban Special Edition</h3>
+      <p>₹11,999</p>
+      <button onclick="event.stopPropagation(); addToCart('zip X Arban Special Edition')">Add to Cart</button>
+    </div>
+    <div class="product-card" onclick="showProductDetails('zip X Off Road')">
+      <img src="cycle6.jpg" alt="zip X Off Road" />
+      <h3>zip X Off Road</h3>
+      <p>₹15,999</p>
+      <button onclick="event.stopPropagation(); addToCart('zip X Off Road')">Add to Cart</button>
+    </div>
+    <div class="product-card" onclick="showProductDetails('zip X On Road')">
+      <img src="cycle7.jpg" alt="zip X On Road" />
+      <h3>zip X On Road</h3>
+      <p>₹11,999</p>
+      <button onclick="event.stopPropagation(); addToCart('zip X On Road')">Add to Cart</button>
+    </div>
+  </div>
+</section>
+
+<section id="cart" class="section">
+  <h2>Your Cart</h2>
+  <div id="cart-items" class="cart-items"><p style="font-style: italic; color: gray;">🛒 Your cart is empty.</p></div>
+  <div id="checkout">
+    <h3>Total: ₹<span id="total">0</span></h3>
+    <h4>Select Payment Option:</h4>
+    <select>
+      <option>Credit/Debit Card</option>
+      <option>UPI</option>
+      <option>Cash on Delivery</option>
+    </select><br><br>
+    <button onclick="checkout()">Checkout</button>
+    <button onclick="clearCart()">Clear Cart</button>
+  </div>
+</section>
+
+<section id="about" class="section">
+  <h2>About zip X</h2>
+  <p>This website was created by <strong>Wanhunlang Kharmalki</strong> for Class 6A's advertisement film in Creation Week 2025.</p>
+  <p>Here are some of our special edition bikes:</p>
+  <ul>
+    <li>🚲 Nash Special Edition</li>
+    <li>🚲 Daniel Special Edition</li>
+    <li>🚲 Jotham Special Edition</li>
+    <li>🚲 Jaden Special Edition</li>
+    <li>🚲 Arban Special Edition</li>
+  </ul>
+
+  <h3>Contact Us</h3>
+  <form onsubmit="alert('Thanks! We will get back to you. (This is a demo form)'); return false;">
+    <input type="text" placeholder="Your Name" required><br><br>
+    <input type="email" placeholder="Your Email" required><br><br>
+    <textarea placeholder="Your Message" required></textarea><br><br>
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+
+<footer>
+  &copy; 2025 zip X. All rights reserved.
+</footer>
+
+<!-- Product Detail Modal -->
+<div id="productModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:100; justify-content:center; align-items:center;">
+  <div style="background:white; padding:20px; border-radius:10px; max-width:500px; width:90%; text-align:center; position:relative;">
+    <span onclick="closeModal()" style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:1.5rem;">&times;</span>
+    <img id="modalImage" src="" alt="" style="width:100%; max-height:250px; object-fit:cover; border-radius:8px;" />
+    <h2 id="modalTitle"></h2>
+    <p id="modalDescription"></p>
+    <p><strong>Price: ₹<span id="modalPrice"></span></strong></p>
+    <button onclick="addToCartFromModal()">Add to Cart</button>
+  </div>
+</div>
+
+<script>
+  function showSection(sectionId) {
+    document.querySelectorAll('.section').forEach(sec => {
+      sec.classList.remove('active-section');
+    });
+    document.getElementById(sectionId).classList.add('active-section');
+  }
+
+  let cart = [];
+  let total = 0;
+  let modalCurrentItem = "";
+
+  const products = {
+    "zip X Standard": { price: 9999, image: "cycle.jpg", description: "Our basic model with great durability and comfort for daily commuting." },
+    "zip X Nash Special Edition": { price: 14999, image: "cycle1.jpg", description: "Inspired by Nash. Built for style and endurance. Premium performance." },
+    "zip X Daniel Special Edition": { price: 12499, image: "cycle2.jpg", description: "Crafted for Daniel. A unique blend of design and strength." },
+    "zip X Jotham special Edition": { price: 13499, image: "cycle3.jpg", description: "specially for Jotham. Sleek, modern, and built for speed." },
+    "zip X Jaden Special Edition": { price: 13999, image: "cycle4.jpg", description: "Special edition inspired by Jaden. Lightweight and agile." },
+    "zip X Arban Special Edition": { price: 11999, image: "cycle5.jpg", description: "designed by Arban. Built tough with superior rust resistance." },
+    "zip X Off Road": { price: 15999, image: "cycle6.jpg", description: "Great for off-road adventures. Rugged design and grip tires." },
+    "zip X On Road": { price: 11999, image: "cycle7.jpg", description: "Smooth for city roads and long-distance riding. Easy gear shift." }
+  };
+
+  function showProductDetails(item) {
+    const product = products[item];
+    modalCurrentItem = item;
+    document.getElementById("modalImage").src = product.image;
+    document.getElementById("modalTitle").textContent = item;
+    document.getElementById("modalDescription").textContent = product.description;
+    document.getElementById("modalPrice").textContent = product.price;
+    document.getElementById("productModal").style.display = "flex";
+  }
+
+  function closeModal() {
+    document.getElementById("productModal").style.display = "none";
+  }
+
+  function addToCartFromModal() {
+    addToCart(modalCurrentItem);
+    closeModal();
+  }
+
+  function addToCart(item) {
+    const count = cart.filter(i => i === item).length;
+    if (count >= 99) {
+      alert("You can add up to 99 units of this item only.");
+      return;
+    }
+    cart.push(item);
+    updateCart();
+    alert(`${item} added to your cart.`);
+  }
+
+  function removeItem(item) {
+    cart = cart.filter(i => i !== item);
+    updateCart();
+  }
+
+  function clearCart() {
+    cart = [];
+    updateCart();
+  }
+
+  function updateCart() {
+    const cartItems = document.getElementById("cart-items");
+    cartItems.innerHTML = '';
+    total = 0;
+
+    if (cart.length === 0) {
+      cartItems.innerHTML = '<p style="font-style: italic; color: gray;">🛒 Your cart is empty.</p>';
+      document.getElementById("total").textContent = '0';
+      return;
+    }
+
+    const counts = {};
+    cart.forEach(item => counts[item] = (counts[item] || 0) + 1);
+
+    for (const item in counts) {
+      const { price } = products[item];
+      const quantity = counts[item];
+      total += price * quantity;
+
+      const div = document.createElement('div');
+      div.className = 'cart-item';
+      div.innerHTML = `
+        <strong>${item}</strong> x${quantity}<br>
+        Price: ₹${price} each<br>
+        Subtotal: ₹${price * quantity}<br>
+        <button onclick="removeItem('${item}')">Remove</button>
+      `;
+      cartItems.appendChild(div);
+    }
+
+    document.getElementById("total").textContent = total;
+  }
+
+  function checkout() {
+    if (cart.length === 0) {
+      alert("Your cart is empty! Please add items before checking out.");
+      return;
+    }
+    alert("Thank you for your order! (This is a demo site)");
+    cart = [];
+    updateCart();
+  }
+</script>
+
+</body>
+</html>
